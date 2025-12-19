@@ -1,0 +1,26 @@
+﻿# model artifacts (НЕ коммитим)
+merged_model/
+outputs/
+outputs2/
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+
+# caches
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.cache/
+huggingface/
+hf_cache/
+wandb/
+runs/
+
+# venv
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
