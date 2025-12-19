@@ -26,21 +26,20 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: .github\workflows\docker-build.yml{{ github.actor }}
-          password: .github\workflows\docker-build.yml{{ github.token }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker meta
+      # Приводим owner/repo к lowercase чтобы GHCR не ругался
+      - name: Prepare image tag (lowercase)
         id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/.github\workflows\docker-build.yml{{ github.repository }}
-          tags: |
-            type=raw,value=latest
+        run: |
+          OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          REPO_LC=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
+          echo "image=ghcr.io/${OWNER_LC}/${REPO_LC}:latest" >> "$GITHUB_OUTPUT"
 
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: .github\workflows\docker-build.yml{{ steps.meta.outputs.tags }}
-          labels: .github\workflows\docker-build.yml{{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.image }}
