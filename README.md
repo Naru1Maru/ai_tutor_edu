@@ -70,8 +70,7 @@ Docker
 ai_tutor_edu/
 ├── app/
 │   ├── api.py          # FastAPI endpoints
-│   ├── model.py        # загрузка и кэш модели
-│   └── ui.py           # простой web‑интерфейс (для пользователей)
+│   └── model.py        # загрузка и кэш модели
 ├── requirements.txt
 ├── Dockerfile
 ├── .env.example
