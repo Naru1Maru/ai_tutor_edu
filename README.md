@@ -146,6 +146,11 @@ ghcr.io/naru1maru/ai_tutor_edu:latest
 docker pull ghcr.io/naru1maru/ai_tutor_edu:latest
 ```
 
+Для того чтобы использовать docker на Mac с Apple Silicon:
+
+```bash
+docker pull --platform=linux/amd64 ghcr.io/naru1maru/ai_tutor_edu:latest
+```
 ---
 
 ## Ручной деплой из GHCR
@@ -166,17 +171,8 @@ docker run --rm -p 8000:8000 \
   -v hf_cache:/root/.cache/huggingface \
   ghcr.io/naru1maru/ai_tutor_edu:latest
 ```
-
-**Приватная модель HF:**
-
-```bash
-docker run --rm -p 8000:8000 \
-  -e MODEL_SOURCE="NaruMaru/ege-checker-qwen2p5-0p5b-demo" \
-  -e HF_TOKEN="hf_..." \
-  -v hf_cache:/root/.cache/huggingface \
-  ghcr.io/naru1maru/ai_tutor_edu:latest
-```
-
+Если на Mac, то добавить: --platform=linux/amd64
+ 
 ---
 
 ## Проверка работы
@@ -231,8 +227,8 @@ curl -X POST http://127.0.0.1:8000/predict \
 
 ## Участники проекта
 
-Конохова Екатерина Михайловна 
-Дистлер Марина Алексеевна 
-Гадиев Михаил Искандерович 
-Чубарова Дарья Алексеевна 
+* Конохова Екатерина Михайловна
+* Дистлер Марина Алексеевна 
+* Гадиев Михаил Искандерович 
+* Чубарова Дарья Алексеевна 
 
